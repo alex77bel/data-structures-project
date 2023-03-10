@@ -26,7 +26,8 @@ class Stack:
             self.nodes.append(Node(data, self.nodes[-1]))
         else:
             self.nodes.append(Node(data))
-
+    
+    @property
     def top(self):
         """
         Метод для возвращения элемента с вершины стека
