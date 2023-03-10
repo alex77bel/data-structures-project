@@ -18,7 +18,8 @@ class TestStack(unittest.TestCase):
         self.stack = Stack()
 
     def test_stack_init(self):
-        self.assertEqual(self.stack.nodes, [])
+        self.assertEqual(self.stack.top, None)
 
-    def test_stack_top(self):
-        self.assertEqual(self.stack.top(), None)
+    def test_stack_push(self):
+        self.stack.push('data1')
+        self.assertEqual(self.stack.top.data, 'data1')
