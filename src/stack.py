@@ -25,3 +25,14 @@ class Stack:
         next_node = self.top
         new_top = Node(data, next_node)
         self.top = new_top
+
+    def pop(self):
+        """
+        Метод для вырезания элемента с вершины стека,
+        возвращает этот элемент
+        """
+        if self.top is None:
+            return None
+        pop_result = self.top.data
+        self.top = self.top.next_node
+        return pop_result
