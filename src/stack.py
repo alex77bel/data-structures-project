@@ -36,3 +36,14 @@ class Stack:
         pop_result = self.top.data
         self.top = self.top.next_node
         return pop_result
+
+    def __str__(self):
+        """Магический метод для строкового представления объекта"""
+        result = ''
+        if self.top is None:
+            return result
+        index = self.top
+        while index:
+            result += index.data + chr(10)
+            index = index.next_node
+        return result[:-1]
