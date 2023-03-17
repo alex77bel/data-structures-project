@@ -17,29 +17,36 @@ class Queue:
         """Конструктор класса Queue"""
         self.head = self.tail = None
 
-    def enqueue(self, data):
+    def enqueue(self, data) -> None:
         """
         Метод для добавления элемента в очередь
         :param data: данные, которые будут добавлены в очередь
         """
+        node = Node(data, None)
         if self.head is None:  # пустая очередь
-            self.head = Node(data, None)  # создаем голову
+            self.head = self.tail = node
         else:  # непустая очередь
-            if self.tail is None:  # 2 элемента в очереди
-                self.tail = Node(data, None)
-                self.head.next_node = self.tail  # голова ссылается на хвост
-            else:  # 3 и более элементов в очереди
-                tail = self.tail  # сохраняем текущий хвост
-                self.tail = Node(data, None)  # наращиваем хвост
-                tail.next_node = self.tail  # предыдущий хвост ссылается на новый
+            self.tail.next_node = node
+            self.tail = node
+
+    def dequeue(self) -> str | None:
+        """
+        Метод для удаления элемента из очереди. Возвращает данные удаленного элемента
+        :return: данные удаленного элемента
+        """
+        if self.head is None:
+            return None
+        result = self.head.data
+        self.head = self.head.next_node
+        return result
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
-        result = ''
         if self.head is None:
-            return result
+            return ''
+        result = []
         index = self.head
         while index:
-            result += index.data + chr(10)
+            result.append(index.data)
             index = index.next_node
-        return result[:-1]
+        return '\n'.join(result)

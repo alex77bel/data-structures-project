@@ -39,11 +39,11 @@ class Stack:
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
-        result = ''
         if self.top is None:
-            return result
+            return ''
+        result = []
         index = self.top
         while index:
-            result += index.data + chr(10)
+            result.append(index.data)
             index = index.next_node
-        return result[:-1]
+        return '\n'.join(result)
