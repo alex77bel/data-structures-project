@@ -48,3 +48,27 @@ class LinkedList:
 
         ll_string += 'None'
         return ll_string
+
+    def to_list(self):
+        """Возвращает список с данными"""
+        ll_list = []
+        node = self.head
+        while node:
+            ll_list.append(node.data)
+            node = node.next_node
+        return ll_list
+
+    def get_data_by_id(self, data):
+        """
+        Возвращает первый найденный словарь с ключом 'id', значение которого равно переданному в метод значению.
+        В случае возникновения TypeError выводится предупреждение и поиск продолжается
+        """
+        node = self.head
+        while node:
+            try:
+                if node.data['id'] == data:
+                    return node.data
+            except TypeError:
+                print('Данные не являются словарем или в словаре нет id')
+            node = node.next_node
+        return None

@@ -31,3 +31,23 @@ class TestLinkedList(unittest.TestCase):
         self.LinkedList.insert_beginning({'id': 0})
         self.assertEqual(self.LinkedList.head.data, {'id': 0})
         assert str(self.LinkedList) == "{'id': 0} -> {'id': 1} -> {'id': 2} -> {'id': 3} -> None"
+
+
+    def test_to_list(self):
+        self.LinkedList.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        self.LinkedList.insert_at_end({'id': 2, 'username': 'mik.roz'})
+        self.LinkedList.insert_at_end({'id': 3, 'username': 'mosh_s'})
+        self.LinkedList.insert_beginning({'id': 0, 'username': 'serebro'})
+        lst = self.LinkedList.to_list()
+        self.assertEqual(lst,[{'id': 0, 'username': 'serebro'},
+                              {'id': 1, 'username': 'lazzy508509'},
+                              {'id': 2, 'username': 'mik.roz'},
+                              {'id': 3, 'username': 'mosh_s'}])
+
+    def test_get_data_by_id(self):
+        self.LinkedList.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        self.LinkedList.insert_at_end('idusername')
+        self.LinkedList.insert_at_end([1, 2, 3])
+        self.LinkedList.insert_at_end({'id': 2, 'username': 'mosh_s'})
+        user_data = self.LinkedList.get_data_by_id(2)
+        self.assertEqual(user_data, {'id': 2, 'username': 'mosh_s'})
